@@ -1,0 +1,48 @@
+@import '~@angular/material/theming';
+
+@mixin app-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .app-container {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+
+        .sidebar {
+            min-width: 300px;
+        }
+    
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .top-toolbar {
+            position: fixed;
+            z-index: 100;
+
+            .spacer {
+                flex: 1;
+            }
+        }
+    
+        .main-content {
+            flex: 1;
+            margin-top: 64px;
+            display: flex;
+            flex-direction: column;
+
+            > .ng-star-inserted {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }    
+}

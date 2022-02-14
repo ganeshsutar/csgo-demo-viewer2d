@@ -1,0 +1,13 @@
+<div class="demo-player">
+    <div class="player-buttons">
+        <!-- <button mat-icon-button (click)="onCenter()"><mat-icon>zoom_in_map</mat-icon></button> -->
+        <button mat-icon-button (click)="onZoomReset()"><mat-icon>center_focus_strong</mat-icon></button>
+        <button mat-icon-button (click)="onPreviousRound()"><mat-icon>skip_previous</mat-icon></button>
+        <button mat-icon-button (click)="onNextRound()"><mat-icon>skip_next</mat-icon></button>
+        <button mat-icon-button (click)="onPlayPause()"><mat-icon>{{intervalId != null ? 'pause' : 'play_arrow'}}</mat-icon></button>
+        <mat-slider class="round-progress" (change)="onSliderChange($event)" [min]="slider.min" [max]="slider.max" [step]="slider.step" [(ngModel)]="currentIndex"></mat-slider>
+        <div class="round-text">{{round}} / {{gameState.rounds}}</div>
+    </div>
+    <div class="demo-screen" id="map"></div>
+</div>
+

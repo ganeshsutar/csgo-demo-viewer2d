@@ -28,6 +28,10 @@
             flex: 1;
         }
 
+        .flip-h {
+            transform: scaleX(-1);
+        }
+
         .top-row {
             .player-health {
                 position: absolute;

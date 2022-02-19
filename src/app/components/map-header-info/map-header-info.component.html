@@ -7,14 +7,14 @@
         <p>{{roundInfo.tClan.clanName || 'T'}}</p>
     </div>
     <div class="team-won-rounds t-color">
-        <p>{{roundInfo.startScores.T}}</p>
+        <p>{{scores.T}}</p>
     </div>
     <div class="timer-rounds">
         <div class="rounds">Round {{round+1}} / {{matchInfo.roundInfo.length}}</div>
         <div class="timer" [class.freeze-time]="currentState == 'freeze-time'">{{currentTime}}</div>
     </div>
     <div class="team-won-rounds ct-color">
-        <p>{{roundInfo.startScores.CT}}</p>
+        <p>{{scores.CT}}</p>
     </div>
     <div class="team-name">
         <p>{{roundInfo.ctClan.clanName || 'CT'}}</p>

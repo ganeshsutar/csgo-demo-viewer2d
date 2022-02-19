@@ -2,6 +2,14 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { mapCfg } from './map-overview-cfg';
 import * as d3 from 'd3';
 
+const GrenadeImageFilenames = {
+  'models/Weapons/w_eq_flashbang_dropped.mdl': 'assets/weapons/flashbang.svg',
+  'models/Weapons/w_eq_incendiarygrenade_dropped.mdl': 'assets/weapons/incgrenade.svg',
+  'models/Weapons/w_eq_smokegrenade_thrown.mdl': 'assets/weapons/smokegrenade.svg',
+  'models/Weapons/w_eq_molotov_dropped.mdl': 'assets/weapons/molotov.svg',
+  'models/Weapons/w_eq_fraggrenade_dropped.mdl': 'assets/weapons/hegrenade.svg'
+};
+
 @Component({
   selector: 'app-demo-viewer-canvas',
   templateUrl: './demo-viewer-canvas.component.html',
@@ -14,7 +22,13 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
   @Input() public gameState: any = {
     players: [],
     deaths: [],
-    bomb:[]
+    bomb:[],
+    nades: [],
+    flashes: [],
+    smokes: [],
+    decoys: [],
+    heGrenades: [],
+    infernos: []
   };
   @Input() public mapName: string = 'de_dust2';
   public width = 600;
@@ -26,6 +40,8 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
   private deathGroup;
   private bombGroup;
   private bombPlantedGroup;
+  private nadesThrownGroup;
+  private nadesGroup;
 
   private zoom;
   private mapViewCfg = {
@@ -72,6 +88,8 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
     this.renderDeaths();
     this.renderBomb();
     this.renderBombPlanted();
+    this.renderNadesThrown();
+    this.renderNades();
   }
 
   createSvg(): void {
@@ -121,10 +139,12 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       .attr('y', '0')
       .attr('width', '100')
       .attr('height', '100');
-    this.bombPlantedGroup = this.topContainer.append('g');
     this.deathGroup = this.topContainer.append('g');
+    this.nadesGroup = this.topContainer.append('g');
+    this.bombPlantedGroup = this.topContainer.append('g');
     this.bombGroup = this.topContainer.append('g');
     this.playerGroup = this.topContainer.append('g');
+    this.nadesThrownGroup = this.topContainer.append('g');
   }
 
   updateMap(): void {
@@ -154,7 +174,16 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
     
     playerNodes.merge(nodes);
 
-    playerNodes
+    const getColor = (d) => {
+      let isFlashed = d.flashduration;
+      if(isFlashed) {
+        return 'white';
+      } else {
+        return (d.team == 2) ? '#e1b12c' : '#273c75';
+      }
+    };
+
+    this.playerGroup.selectAll('g.playerNode')
       .select('path.playerNode-path')
       .attr('d', 'M 2 0 A 2 2 0 0 0 0 2 A 2 2 0 0 0 2 4 A 2 2 0 0 0 4 2 A 2 2 0 0 0 4 2 L 4 0 L 2 0 A 2 2 0 0 0 2 0 z')
       .attr('transform', (d) => {
@@ -166,7 +195,7 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       })
       .attr('stroke', 'white')
       .attr('stroke-width', 0.3)
-      .attr('fill', (d) => (d.team == 2) ? '#e1b12c' : '#273c75')
+      .attr('fill', getColor)
       .attr('filter', 'url(#drop-shadow)');
   }
 
@@ -236,9 +265,6 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
 
   renderBombPlanted(): void {
     let bombPlanted = this.gameState.bombPlanted || [];
-    if (bombPlanted.length > 0) {
-      console.log(bombPlanted);
-    }
     let bombNodes = this.bombPlantedGroup.selectAll('g.bomb-planted').data(bombPlanted);
 
     bombNodes.exit().remove();
@@ -255,5 +281,116 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       })
       .attr('height', 2);
     bombNodes.merge(nodes);
+  }
+
+  renderNadesThrown(): void {
+    let nades = this.gameState.nades || [];
+    let nadeNodes = this.nadesThrownGroup.selectAll('g.nade-thrown').data(nades);
+    nadeNodes.exit().remove();
+
+    let addedNodes = nadeNodes.enter()
+      .append('g')
+      .attr('class', 'nade-thrown')
+      .append('image');
+
+    nadeNodes.merge(addedNodes);
+    this.nadesThrownGroup.selectAll('g.nade-thrown')
+      .select('image')
+      .attr('x', (d) => {
+        return this.transformX(d.x)-0.5;
+      })
+      .attr('y', (d) => {
+        return this.transformY(d.y)-1.5;
+      })
+      .attr('href', (d) => {
+        return GrenadeImageFilenames[d.modelName];
+      })
+      .attr('height', 3);
+  }
+
+  renderNades(): void {
+    this.renderFlashes();
+    this.renderSmokes();
+    this.renderHeGrenades();
+    this.renderInfernos();
+  }
+
+  renderFlashes(): void {
+    let flashes = this.nadesGroup.selectAll('g.flashes')
+      .data(this.gameState.flashes || []);
+    
+    flashes.exit().remove();
+    let nodes = flashes.enter()
+      .append('g')
+      .attr('class', 'flashes')
+      .append('circle');
+    
+    flashes.merge(nodes);
+    this.nadesGroup.selectAll('g.flashes')
+      .select('circle')
+      .attr('r', 3)
+      .attr('cx', (f) => this.transformX(f.x))
+      .attr('cy', (f) => this.transformY(f.y))
+      .attr('fill', 'white');
+  }
+
+  renderSmokes(): void {
+    let activeSmokes = this.gameState.smokes || [];
+    let smokes = this.nadesGroup.selectAll('g.smokes')
+      .data(activeSmokes);
+    
+    smokes.exit().remove();
+    let nodes = smokes.enter()
+      .append('g')
+      .attr('class', 'smokes')
+      .append('circle');
+    smokes.merge(nodes);
+
+    this.nadesGroup.selectAll('g.smokes')
+      .select('circle')
+      .attr('r', 3)
+      .attr('cx', (s) => this.transformX(s.x))
+      .attr('cy', (s) => this.transformY(s.y))
+      .attr('fill', 'gray');
+  }
+
+  renderHeGrenades(): void {
+    let heGrenades = this.gameState.heGrenades || [];
+    let heGrenadesNodes = this.nadesGroup.selectAll('g.he-grenades')
+      .data(heGrenades);
+    
+    heGrenadesNodes.exit().remove();
+    let nodes = heGrenadesNodes.enter()
+      .append('g')
+      .attr('class', 'he-grenades')
+      .append('circle');
+    heGrenadesNodes.merge(nodes);
+
+    this.nadesGroup.selectAll('g.he-grenades')
+      .select('circle')
+      .attr('r', 3)
+      .attr('cx', (s) => this.transformX(s.x))
+      .attr('cy', (s) => this.transformY(s.y))
+      .attr('fill', 'red');
+  }
+
+  renderInfernos(): void {
+    let infernos = this.gameState.infernos || [];
+    let infernoNodes = this.nadesGroup.selectAll('g.inferno')
+      .data(infernos);
+    
+    infernoNodes.exit().remove();
+    let nodes = infernoNodes.enter()
+      .append('g')
+      .attr('class', 'inferno')
+      .append('circle');
+      infernoNodes.merge(nodes);
+
+    this.nadesGroup.selectAll('g.inferno')
+      .select('circle')
+      .attr('r', 3)
+      .attr('cx', (s) => this.transformX(s.x))
+      .attr('cy', (s) => this.transformY(s.y))
+      .attr('fill', 'yellow');
   }
 }

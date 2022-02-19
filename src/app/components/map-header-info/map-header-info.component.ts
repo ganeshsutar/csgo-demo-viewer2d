@@ -34,6 +34,13 @@ export class MapHeaderInfoComponent implements OnInit {
     }
   }
 
+  get scores()  {
+    if(this.currentGameState.tick < this.roundInfo.roundEndTick) {
+      return this.roundInfo.startScores;
+    }
+    return this.roundInfo.endScores;
+  }
+
   get currentTime(): string {
     if(!this.currentGameState.tick) return '-:--';
 
@@ -46,14 +53,16 @@ export class MapHeaderInfoComponent implements OnInit {
       return `${mins}:${secs}`;
     } else {
       let seconds = matchLength - Math.abs((currentTick - this.roundInfo.freezeEndTick) / this.matchInfo.tickRate);
-      if(currentTick > this.roundInfo.bombPlantTick) {
+      if(this.roundInfo.bombPlantTick != 0 && currentTick > this.roundInfo.bombPlantTick) {
         seconds = 40 - Math.abs((currentTick - this.roundInfo.bombPlantTick) / this.matchInfo.tickRate);
+      }
+      if(seconds < 0) {
+        seconds = Math.abs(this.roundInfo.endTick - currentTick) / this.matchInfo.tickRate;
       }
       let mins = Math.floor(seconds/60);
       let secs = ('0' + (seconds%60).toFixed());
       secs = secs.substring(secs.length-2);
       return `${mins}:${secs}`;
-
     }
   }
 

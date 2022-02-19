@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="player-name" *ngIf="blockAlign == 'right'">
-            <div class="weapon-text" *ngIf="hasPrimary">
+            <div class="weapon-text flip-h" *ngIf="hasPrimary">
                 <img height="18px"  [src]="getWeaponFileName(primary.itemName)">
             </div>
             <div class="spacer"></div>
@@ -33,10 +33,10 @@
         </div>
         <div class="spacer"></div>
         <ng-container *ngFor="let nade of nades">
-            <div class="grenade image-on-mask" *ngIf="nade.itemName == 'Smoke Grenade'">
+            <div class="grenade" *ngIf="nade.itemName == 'Smoke Grenade'">
                 <img height="24px" src="assets/weapons/smokegrenade.svg">
             </div>
-            <div class="grenade image-on-mask" *ngIf="nade.itemName == 'High Explosive Grenade'">
+            <div class="grenade" *ngIf="nade.itemName == 'High Explosive Grenade'">
                 <img height="24px" src="assets/weapons/hegrenade.svg">
             </div>
             <div class="grenade" *ngIf="nade.itemName == 'Incendiary Grenade'">
@@ -53,7 +53,7 @@
             </div>
         </ng-container>
         
-        <div class="weapon-text" *ngIf="hasSecondary">
+        <div class="weapon-text" *ngIf="hasSecondary" [class.flip-h]="playerState.team == 3">
             <img height="18px" [src]="getWeaponFileName(secondary.itemName)">
         </div>
     </div>

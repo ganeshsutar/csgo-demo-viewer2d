@@ -274,10 +274,10 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       .append('svg:image')
       .attr('xlink:href', 'assets/hud-images/icon_c4_default.svg')
       .attr('x', (d) => {
-        return this.transformX(d.x);
+        return this.transformX(d.x)-0.75;
       })
       .attr('y', (d) => {
-        return this.transformY(d.y);
+        return this.transformY(d.y)-0.5;
       })
       .attr('height', 2);
     bombNodes.merge(nodes);

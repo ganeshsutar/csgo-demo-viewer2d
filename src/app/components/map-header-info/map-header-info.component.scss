@@ -69,6 +69,18 @@
                 text-transform: uppercase;
             }
 
+            .timer {
+                display: flex;
+                flex-direction: row;
+                align-items: stretch;
+                vertical-align: middle;
+                min-height: 32px;
+
+                .time-text {
+                    margin: auto;
+                }
+            }
+
             .timer, .rounds {
                 padding: 5px 20px;
                 text-align: center;

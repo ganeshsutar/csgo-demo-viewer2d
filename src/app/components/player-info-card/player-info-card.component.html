@@ -1,0 +1,72 @@
+<div class="player-card-info">
+    <div class="row top-row">
+        <div class="player-health" [class.reverse]="playerState.team == 3">
+            <div class="health-bar" [class.t-health-bar]="playerState.team == 2" [style.width.%]="playerState.health">&nbsp;</div>
+        </div>
+        <div class="player-name" *ngIf="blockAlign == 'left'">
+            <div class="name-text">{{playerInfo.name}}</div>
+            <div class="spacer"></div>
+            <div class="weapon-text" *ngIf="hasPrimary">
+                <img height="18px" [src]="getWeaponFileName(primary.itemName)">
+            </div>
+        </div>
+        <div class="player-name" *ngIf="blockAlign == 'right'">
+            <div class="weapon-text" *ngIf="hasPrimary">
+                <img height="18px"  [src]="getWeaponFileName(primary.itemName)">
+            </div>
+            <div class="spacer"></div>
+            <div class="name-text">{{playerInfo.name}}</div>
+        </div>
+    </div>
+    <div class="row mid-row" [class.mid-row-reverse]="playerState.team == 3">
+        <div class="mid-row-cell armor image-on-mask" *ngIf="!playerState.helmet && playerState.armor > 0">
+            <img height="18px" src="assets/hud-images/icon_armor_full_default.svg">
+        </div>
+        <div class="mid-row-cell helmet image-on-mask" *ngIf="playerState.helmet && playerState.armor > 0">
+            <img height="18px" src="assets/hud-images/icon_armor_helmet_default.svg">
+        </div>
+        <div class="mid-row-cell c4" *ngIf="playerState.hasC4">
+            <img height="24px" src="assets/weapons/c4.svg">
+        </div>
+        <div class="mid-row-cell c4" *ngIf="playerState.hasDefuser">
+            <img height="24px" src="assets/hud-images/icon_defuse_default.svg">
+        </div>
+        <div class="spacer"></div>
+        <ng-container *ngFor="let nade of nades">
+            <div class="grenade image-on-mask" *ngIf="nade.itemName == 'Smoke Grenade'">
+                <img height="24px" src="assets/weapons/smokegrenade.svg">
+            </div>
+            <div class="grenade image-on-mask" *ngIf="nade.itemName == 'High Explosive Grenade'">
+                <img height="24px" src="assets/weapons/hegrenade.svg">
+            </div>
+            <div class="grenade" *ngIf="nade.itemName == 'Incendiary Grenade'">
+                <img height="24px" src="assets/weapons/incgrenade.svg">
+            </div>
+            <div class="grenade" *ngIf="nade.itemName == 'Molotov'">
+                <img height="24px" src="assets/weapons/molotov.svg">
+            </div>
+            <div class="grenade" *ngIf="nade.itemName == 'Flashbang'">
+                <img height="24px" src="assets/weapons/flashbang.svg">
+            </div>
+            <div class="grenade" *ngIf="nade.itemName == 'Flashbang' && nade.ownerAmmo == 2">
+                <img height="24px" src="assets/weapons/flashbang.svg">
+            </div>
+        </ng-container>
+        
+        <div class="weapon-text" *ngIf="hasSecondary">
+            <img height="18px" [src]="getWeaponFileName(secondary.itemName)">
+        </div>
+    </div>
+    <div class="row bottom-row">
+        <ng-container *ngIf="blockAlign == 'left'">
+            <div class="bottom-row-cell money">$ {{playerState.account}}</div>
+            <div class="bottom-row-cell player-kills">K {{playerState.kills}}</div>
+            <div class="bottom-row-cell player-deaths">D {{playerState.deaths}}</div>
+        </ng-container>
+        <ng-container *ngIf="blockAlign == 'right'">
+            <div class="bottom-row-cell player-kills">K {{playerState.kills}}</div>
+            <div class="bottom-row-cell player-deaths">D {{playerState.deaths}}</div>
+            <div class="bottom-row-cell money right-align">$ {{playerState.account}}</div>
+        </ng-container>
+    </div>
+</div>

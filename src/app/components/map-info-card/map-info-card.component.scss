@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+@mixin map-info-card-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .map-info-card {
+        padding: 10px;
+    }
+}

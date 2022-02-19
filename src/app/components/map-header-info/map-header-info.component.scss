@@ -1,0 +1,83 @@
+@import '~@angular/material/theming';
+
+@mixin map-header-info-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .map-header-info {
+        display: flex;
+        flex-direction: row;
+        font-family: Montserrat, sans-serif;
+        font-size: 18pt;
+        align-items: stretch;
+
+        .spacer {
+            flex: 1;
+        }
+
+        .clan-image {
+            background-color: #031d3699;
+            padding: 10px;
+        }
+
+        .team-name {
+            padding: 20px;
+            text-transform: uppercase;
+            min-width: 200px;
+            max-width: 200px;
+            background-color: #031d3699;
+            display: flex;
+            flex-direction: row;
+
+            p {
+                margin: auto;
+                text-align: center;
+            }
+        }
+
+        .team-won-rounds {
+            text-transform: capitalize;
+            min-width: 100px;
+            max-width: 100px;
+            text-align: center;
+            background-color: #031d3699;
+            display: flex;
+            flex-direction: row;
+
+            p {
+                margin: auto;
+                text-align: center;
+            }
+        }
+
+        .t-color {
+            background-color: #e1b12c99;
+        }
+
+        .ct-color {
+            background-color: #273c7599;
+        }
+
+        .timer-rounds {
+            background-color: #031d3699;
+
+            .rounds {
+                font-size: 12pt;
+                text-transform: uppercase;
+            }
+
+            .timer, .rounds {
+                padding: 5px 20px;
+                text-align: center;
+            }
+
+            .freeze-time {
+                color: rgb(148, 7, 7);
+                font-weight: 600;
+            }
+        }
+    }
+}

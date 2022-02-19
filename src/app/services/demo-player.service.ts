@@ -2,6 +2,40 @@ import { Injectable } from '@angular/core';
 
 declare var DemoFile: any;
 declare var fsPromises: any;
+declare var zlib: any;
+declare var Buffer: any;
+
+const zipBuffer = (buffer: any) => {
+  return new Promise((res, rej) => {
+      return zlib.gzip(buffer, (err, buf) => {
+          if(err) return rej(err);
+          return res(buf);
+      });
+  });
+};
+
+const dumpJson = (filename: string, data: any) => {
+  return zipBuffer(Buffer.from(JSON.stringify(data, null, 2))).then((buffer: any) => {
+      return fsPromises.writeFile(filename, buffer);
+  })
+};
+
+const unzipBuffer = (buffer: any) => {
+  return new Promise((res, rej) => {
+      return zlib.unzip(buffer, (err, buf) => {
+          if(err) return rej(err);
+          return res(buf);
+      });
+  });
+};
+
+const readJson = (filename: string) => {
+  return fsPromises.readFile(filename).then((buffer) => {
+      return unzipBuffer(buffer).then((buf: any) => {
+          return JSON.parse(buf.toString());
+      });
+  });
+};
 
 const collectData = (demofile) => {
   const gameState = {
@@ -25,44 +59,15 @@ export class DemoPlayerService {
 
   constructor() { }
 
-  public loadDemo(filename: String) {
-    return fsPromises.readFile(filename).then((buffer) => {
-      return new Promise((res, rej) => {
-        const demofile = new DemoFile.DemoFile();
-        const matchInfo = {
-          rounds: 0,
-          roundPositions: {}
-        };
-        
-        demofile.gameEvents.on('round_start', (e) => {
-            ++matchInfo.rounds;
-            matchInfo.roundPositions[matchInfo.rounds] = [];
-        });
-
-        demofile.on('tickend', (tick) => {
-            let frame = demofile.tickRate / 32;
-            if(!(matchInfo.rounds > 0)) return;
-            if((tick % frame) != 0) return;
-
-            const gameState = collectData(demofile);
-            matchInfo.roundPositions[matchInfo.rounds].push(gameState);
-        });
+  public loadDemo(filename: string) {
     
-        demofile.on('end', (e) => {
-            if(e.error) {
-                return rej(e.error);
-            } 
-            return res(matchInfo);
-        });
-        
-        demofile.parse(buffer);
-      });
-    });
   }
 
-  public loadDemoJson(filename: String) {
-    return fsPromises.readFile(filename).then((buffer) => {
-      return JSON.parse(buffer.toString());
-    });
+  public loadJson(filename: string) {
+    return readJson(filename);
+  }
+
+  public loadDemoJson(filename: string) {
+    return readJson(filename);
   }
 }

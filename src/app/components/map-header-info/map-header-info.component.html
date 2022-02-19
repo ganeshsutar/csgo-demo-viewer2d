@@ -1,0 +1,26 @@
+<div class="map-header-info">
+    <div class="spacer"></div>
+    <div class="clan-image">
+        <img src="assets/hud-images/logo_T_default.png" width="40px" height="40px">
+    </div>
+    <div class="team-name">
+        <p>{{roundInfo.tClan.clanName || 'T'}}</p>
+    </div>
+    <div class="team-won-rounds t-color">
+        <p>{{roundInfo.startScores.T}}</p>
+    </div>
+    <div class="timer-rounds">
+        <div class="rounds">Round {{round+1}} / {{matchInfo.roundInfo.length}}</div>
+        <div class="timer" [class.freeze-time]="currentState == 'freeze-time'">{{currentTime}}</div>
+    </div>
+    <div class="team-won-rounds ct-color">
+        <p>{{roundInfo.startScores.CT}}</p>
+    </div>
+    <div class="team-name">
+        <p>{{roundInfo.ctClan.clanName || 'CT'}}</p>
+    </div>
+    <div class="clan-image">
+        <img src="assets/hud-images/logo_CT_default.png" width="40px" height="40px">
+    </div>
+    <div class="spacer"></div>
+</div>

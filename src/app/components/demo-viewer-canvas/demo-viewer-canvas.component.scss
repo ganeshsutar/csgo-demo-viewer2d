@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+
+@mixin demo-viewer-canvas-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .demo-viewer-canvas {
+        padding: 10px;
+        min-width: 600px;
+        max-width: 600px;
+    }
+}

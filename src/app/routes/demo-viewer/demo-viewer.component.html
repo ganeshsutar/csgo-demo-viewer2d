@@ -1,13 +1,38 @@
 <div class="demo-player">
-    <div class="player-buttons">
-        <!-- <button mat-icon-button (click)="onCenter()"><mat-icon>zoom_in_map</mat-icon></button> -->
+    <div class="player-buttons" *ngIf="demoLoaded">
         <button mat-icon-button (click)="onZoomReset()"><mat-icon>center_focus_strong</mat-icon></button>
         <button mat-icon-button (click)="onPreviousRound()"><mat-icon>skip_previous</mat-icon></button>
         <button mat-icon-button (click)="onNextRound()"><mat-icon>skip_next</mat-icon></button>
         <button mat-icon-button (click)="onPlayPause()"><mat-icon>{{intervalId != null ? 'pause' : 'play_arrow'}}</mat-icon></button>
-        <mat-slider class="round-progress" (change)="onSliderChange($event)" [min]="slider.min" [max]="slider.max" [step]="slider.step" [(ngModel)]="currentIndex"></mat-slider>
-        <div class="round-text">{{round}} / {{gameState.rounds}}</div>
+        <mat-slider class="round-progress" [min]="slider.min" [max]="slider.max" [step]="slider.step" [(ngModel)]="currentIndex"></mat-slider>
     </div>
-    <div class="demo-screen" id="map"></div>
+    <div class="map-details" *ngIf="demoLoaded">
+        <div class="round-info-header">
+            <app-map-header-info [matchInfo]="matchInfo" 
+                [roundInfo]="roundInfo" 
+                [currentGameState]="CurrentGameState"
+                [round]="round">
+            </app-map-header-info>
+        </div>
+        <div class="round-info">
+            <div class="team-card map-t-info">
+                <app-player-info-card *ngFor="let player of TPlayers" 
+                    [playerInfo]="getPlayerInfo(player.userId)" 
+                    [playerState]="player" blockAlign="left">
+                </app-player-info-card>
+            </div>
+            <div class="spacer"></div>
+            <app-demo-viewer-canvas #demoViewer 
+                [mapName]="matchInfo.mapName" 
+                [gameState]="CurrentGameState"></app-demo-viewer-canvas>
+            <div class="spacer"></div>
+            <div class="team-card map-ct-info">
+                <app-player-info-card *ngFor="let player of CTPlayers" 
+                    [playerInfo]="getPlayerInfo(player.userId)" 
+                    [playerState]="player" blockAlign="right">
+                </app-player-info-card>
+            </div>
+        </div>
+    </div>
 </div>
 

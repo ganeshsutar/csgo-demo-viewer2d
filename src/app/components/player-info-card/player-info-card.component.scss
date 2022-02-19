@@ -1,0 +1,164 @@
+@import '~@angular/material/theming';
+
+@mixin player-info-card-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .player-card-info {
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 600;
+        margin-bottom: 5px;
+        position: relative;
+        background-color: #031d3699;
+        // border-radius: 3px;
+
+        
+        .row {
+            min-height: 30px;
+            line-height: 30px;
+        }
+
+        .spacer {
+            flex: 1;
+        }
+
+        .top-row {
+            .player-health {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                // border-radius: 3px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+
+                .health-bar {
+                    background-color: #273c75; // #2980b9;
+                    height: 30px;
+                    // border-radius: 3px;
+
+                    &.t-health-bar {
+                        background-color: #e1b12c; // #8e9c0c;
+                    }
+                }
+
+                &.reverse {
+                    flex-direction: row-reverse;
+                }
+            }
+
+            .player-name {
+                position: absolute;
+                line-height: 30px;
+                padding: 0px 10px;
+                vertical-align: middle;
+                display: flex;
+                flex-direction: row;
+                width: 93%;
+
+                .weapon-text {
+                    display: flex;
+                    flex-direction: row;
+
+                    img {
+                        margin: auto;
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        transform: scale(1.5);
+                    }
+                }
+            }
+        }
+
+        .mid-row {
+            display: flex;
+            flex-direction: row;
+            padding: 0px 0px;
+            line-height: 34px;
+
+            .mid-row-cell {
+                min-width: 30px;
+                display: flex;
+                flex-direction: row;
+
+                img {
+                    margin: auto;
+                }
+            }
+
+            .cell {
+                display: flex;
+                flex-direction: row;
+
+                img {
+                    margin: auto;
+                }
+            }
+
+            .image-on-mask {
+                filter: invert(99%) sepia(41%) saturate(162%) hue-rotate(167deg) brightness(99%) contrast(91%);
+            }
+
+            .image-off-mask {
+                filter: invert(50%) sepia(7%) saturate(180%) hue-rotate(161deg) brightness(90%) contrast(92%);
+            }
+
+            .grenade {
+                margin: 0px 5px;
+                display: flex;
+                flex-direction: row;
+
+                img {
+                    margin: auto;
+                }
+            }
+
+            .weapon-text {
+                display: flex;
+                flex-direction: row;
+
+                img {
+                    margin: auto;
+                    margin-right: 10px;
+                    margin-left: 10px;
+                    transform: scale(1.5);
+                }
+            }
+        }
+
+        .mid-row-reverse {
+            flex-direction: row-reverse;
+        }
+
+
+
+        .bottom-row {
+            display: flex;
+            flex-direction: row;
+            padding: 0px 10px;
+            line-height: 30px;
+
+            .bottom-row-cell {
+                min-width: 30px;
+            }
+
+            .right-align {
+                text-align: right;
+            }
+
+            .money {
+                min-width: 100px;
+                flex: 1;
+            }
+
+            // .player-kills, .player-deaths {
+            // }
+        }
+    }
+}

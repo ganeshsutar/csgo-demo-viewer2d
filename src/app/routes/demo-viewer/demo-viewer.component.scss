@@ -32,8 +32,31 @@
                 }
             }
 
-            figure.demo-screen {
-                margin: 0px;
+            .map-details {
+                display: flex;
+                flex-direction: column;
+
+                .spacer {
+                    flex: 1;
+                }
+
+                figure.demo-screen {
+                    margin: auto;
+                }
+
+                .team-card {
+                    padding: 20px;
+                    margin-top: 50px;
+                }
+
+                .round-info-header {
+                    padding: 10px 20px;
+                }
+
+                .round-info {
+                    display: flex;
+                    flex-direction: row;
+                }
             }
         }
 

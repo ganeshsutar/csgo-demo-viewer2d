@@ -1,13 +1,13 @@
 <div class="demo-player">
     <div class="player-buttons" *ngIf="demoLoaded">
-        <!-- <button mat-icon-button [disabled]="roundLoading" (click)="onPreviousRound()"><mat-icon>skip_previous</mat-icon></button>
-        <button mat-icon-button [disabled]="roundLoading" (click)="onNextRound()"><mat-icon>skip_next</mat-icon></button> -->
         <mat-form-field [disabled]="roundLoading" [style.width.px]="50">
             <mat-label>Round</mat-label>
             <mat-select [(ngModel)]="round" (ngModelChange)="onRoundChanged()">
                 <mat-option *ngFor="let round of rounds" [value]="round">{{round+1}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <button mat-icon-button [disabled]="roundLoading" (click)="onPreviousRound()"><mat-icon>skip_previous</mat-icon></button>
+        <button mat-icon-button [disabled]="roundLoading" (click)="onNextRound()"><mat-icon>skip_next</mat-icon></button>
         <button mat-icon-button [disabled]="roundLoading" (click)="onPlayPause()"><mat-icon>{{intervalId != null ? 'pause' : 'play_arrow'}}</mat-icon></button>
         <!-- <mat-slider class="round-progress" [disabled]="roundLoading" [min]="slider.min" [max]="slider.max" [step]="slider.step" [(ngModel)]="currentIndex"></mat-slider> -->
         <app-timeline-slider class="round-progress" [markers]="markers" [min]="slider.min" [max]="slider.max" [(value)]="currentIndex"></app-timeline-slider>

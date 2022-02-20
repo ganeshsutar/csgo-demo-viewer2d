@@ -9,16 +9,27 @@
 
     .player-card-info {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         min-width: 300px;
         font-family: Montserrat, sans-serif;
         font-weight: 600;
         margin-bottom: 5px;
-        position: relative;
-        background-color: #031d3699;
+        background-color: #031d36;
         // border-radius: 3px;
 
-        
+        .death-image {
+            margin: auto;
+            padding: 0px 10px;
+        }
+
+        &.row-reverse {
+            flex-direction: row-reverse;
+        }
+
+        .infos {
+            flex: 1;
+        }
+
         .row {
             min-height: 30px;
             line-height: 30px;
@@ -33,6 +44,8 @@
         }
 
         .top-row {
+            position: relative;
+
             .player-health {
                 position: absolute;
                 top: 0px;

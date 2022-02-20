@@ -403,15 +403,15 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       .append('g')
       .attr('class', 'he-grenades')
       .append('svg:image')
-      .attr('xlink:href', 'assets/hud-icons/he_exploded.png');
+      .attr('xlink:href', 'assets/hud-icons/decoy_exploded.png');
     heGrenadesNodes.merge(nodes);
 
     this.nadesGroup.selectAll('g.he-grenades')
       .select('image')
       .attr('transform', (f) => {
-        let x = this.transformX(f.x) - 48 * 100 / 600 / 2;
-        let y = this.transformY(f.y) - 48 * 100 / 600 / 2;
-        return `translate(${x}, ${y}) scale(0.1)`;
+        let x = this.transformX(f.x) - 72 * 100 / 600 / 2;
+        let y = this.transformY(f.y) - 72 * 100 / 600 / 2;
+        return `translate(${x}, ${y}) scale(0.2)`;
       });
   }
 

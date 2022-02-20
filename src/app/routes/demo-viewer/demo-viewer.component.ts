@@ -116,7 +116,7 @@ export class DemoViewerComponent implements OnInit {
   }
 
   loadGame(): void {
-    this.baseDir = 'C:\\Users\\jack\\Documents\\projects\\csgo-demo-test\\generated\\demo-files';
+    this.baseDir = 'F:\\demo-maps\\generated\\demo-files';
     this.demoPlayer.loadJson(this.baseDir + '\\match-info.json.gzip').then((matchInfo) => {
       return this.loadMatchInfo(matchInfo);
     });

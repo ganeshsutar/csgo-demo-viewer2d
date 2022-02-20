@@ -26,7 +26,7 @@ export class MapHeaderInfoComponent implements OnInit {
     if(currentTick < this.roundInfo.freezeEndTick) {
       return 'freeze-time';
     } else {
-      if(currentTick > this.roundInfo.bombPlantTick) {
+      if(currentTick > this.roundInfo.bombPlantTick && this.roundInfo.bombPlantTick != 0) {
         return 'bomb-planted';
       } else {
         return 'playing';

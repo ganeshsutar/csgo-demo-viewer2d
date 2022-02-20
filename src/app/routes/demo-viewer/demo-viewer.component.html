@@ -3,7 +3,8 @@
         <button mat-icon-button [disabled]="roundLoading" (click)="onPreviousRound()"><mat-icon>skip_previous</mat-icon></button>
         <button mat-icon-button [disabled]="roundLoading" (click)="onNextRound()"><mat-icon>skip_next</mat-icon></button>
         <button mat-icon-button [disabled]="roundLoading" (click)="onPlayPause()"><mat-icon>{{intervalId != null ? 'pause' : 'play_arrow'}}</mat-icon></button>
-        <mat-slider class="round-progress" [disabled]="roundLoading" [min]="slider.min" [max]="slider.max" [step]="slider.step" [(ngModel)]="currentIndex"></mat-slider>
+        <!-- <mat-slider class="round-progress" [disabled]="roundLoading" [min]="slider.min" [max]="slider.max" [step]="slider.step" [(ngModel)]="currentIndex"></mat-slider> -->
+        <app-timeline-slider class="round-progress" [markers]="markers" [min]="slider.min" [max]="slider.max" [(value)]="currentIndex"></app-timeline-slider>
         <button mat-flat-button (click)="onZoomReset()">Zoom Reset</button>
     </div>
     <div class="map-details" *ngIf="demoLoaded">

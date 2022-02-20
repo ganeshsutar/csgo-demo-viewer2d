@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DemoViewerCanvasComponent } from 'src/app/components/demo-viewer-canvas/demo-viewer-canvas.component';
+import { MarkerData } from 'src/app/components/timeline-slider/timeline-slider.component';
 import { DemoPlayerService } from 'src/app/services/demo-player.service';
 
 
@@ -31,6 +32,7 @@ export class DemoViewerComponent implements OnInit {
     startTick: 0,
     endTick: 0,
     freezeEndTick: 0,
+    bombPlantTick: 0,
     reason: '',
     winner: 2,
     gameStateFile: '',
@@ -47,6 +49,9 @@ export class DemoViewerComponent implements OnInit {
   };
   private gameStates: any[] = [];
   public currentIndex: number = 0;
+  public markers: MarkerData[] = [
+    {tick: 0, text: 'start'}
+  ];
 
   public intervalId;
 
@@ -106,6 +111,38 @@ export class DemoViewerComponent implements OnInit {
   resetSlider() {
     this.slider.min = 0;
     this.slider.max = this.gameStates.length;
+    this.addMarkers();
+  }
+
+  addMarkers() {
+    this.markers = [];
+
+    this.markers.push({
+      tick: 0, text: 'Start'
+    });
+    this.markers.push({
+      tick: this.gameStates.length-1, text: 'End'
+    })
+    let freezeAdded = false;
+    let bombPlantAdded = false;
+    for(var i=0; i<this.gameStates.length; ++i) {
+      let gameState = this.gameStates[i];
+      if(!freezeAdded && gameState.tick > this.roundInfo.freezeEndTick) {
+        this.markers.push({
+          tick: i, text: 'Go Go Go'
+        });
+        freezeAdded = true;
+      }
+      if(this.roundInfo.bombPlantTick != 0 && !bombPlantAdded && 
+        gameState.tick > this.roundInfo.bombPlantTick) {
+        this.markers.push({
+          tick:i, text: 'Bomb Planted'
+        });
+        bombPlantAdded = true;
+      }
+
+      if(freezeAdded &&  bombPlantAdded) break;
+    }
   }
 
   onNextRound(stopPlaying=true) {

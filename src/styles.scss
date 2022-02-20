@@ -44,6 +44,7 @@ $dv-image-dark-theme: mat-dark-theme((
 @import './app/components/map-info-card/map-info-card.component.scss';
 @import './app/components/player-info-card/player-info-card.component.scss';
 @import './app/components/map-header-info/map-header-info.component.scss';
+@import './app/components/timeline-slider/timeline-slider.component.scss';
 
 
 @mixin app-theme($theme) {
@@ -54,6 +55,7 @@ $dv-image-dark-theme: mat-dark-theme((
   @include map-info-card-component-theme($theme);
   @include player-info-card-component-theme($theme);
   @include map-header-info-component-theme($theme);
+  @include timeline-slider-component-theme($theme);
 }
 
 // Include theme styles for core and each component used in your app.

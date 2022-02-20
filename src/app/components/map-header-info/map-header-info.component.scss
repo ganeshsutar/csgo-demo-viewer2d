@@ -21,6 +21,9 @@
         .clan-image {
             background-color: #031d3699;
             padding: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
 
         .team-name {

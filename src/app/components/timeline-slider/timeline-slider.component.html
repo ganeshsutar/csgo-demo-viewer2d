@@ -1,0 +1,17 @@
+<div class="timeline-container" (window:resize)="onResize($event)" (blur)="onBlur()" (focus)="onFocus()">
+    <div class="timeline-slider" #container>
+        <!--  [ngStyle]="{'transform': 'translateX(' + getX(value) + 'px)'}" -->
+        <div class="slider-handle" cdkDragBoundary=".timeline-slider" cdkDrag cdkDragLockAxis="x" (cdkDragEnded)="dragEnd($event)" [cdkDragFreeDragPosition]="dragPosition"></div>
+        <div class="slider-line">
+            <div class="slider-completed" [class.focused]="focused" [ngStyle]="{'width': getCompletedValue() + 'px'}"></div>
+        </div>
+        <div class="timeline-markers">
+            <div class="timeline-marker" *ngFor="let marker of markerPositions" 
+                [ngStyle]="{'transform': 'translate(' + marker.x + 'px, 0)'}"
+                (click)="onMarkerClicked(marker)">
+                <div class="marker-top" [class.passed]="value > marker.tick"></div>
+                <div class="marker-text" [class.passed]="value > marker.tick">{{marker.text}}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+@import '~@angular/material/theming';
+
+
+@mixin timeline-slider-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .timeline-container {
+        .timeline-slider {
+            position: relative;
+            
+            .slider-line{
+                width: 100%;
+                min-height: 2px;
+                max-height: 2px;
+                background-color: mat-color($foreground, divider);
+        
+                .slider-completed {
+                    min-height: 2px;
+                    max-height: 2px;
+                    background-color: mat-color($accent, 500);
+
+                    &.focused {
+                        min-height: 4px;
+                        max-height: 4px;
+                    }
+                }
+            }
+        
+            .slider-handle {
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 12px solid mat-color($accent, 500);
+            }
+        
+            .timeline-markers {
+                position: absolute;
+                display: inline-flex;
+                width: 100%;
+        
+                .timeline-marker {
+                    position: absolute;
+                    transform: translate(0px, 0px);
+                    cursor: pointer;
+        
+                    .marker-top {
+                        min-height: 10px;
+                        border-left: 2px solid mat-color($foreground, divider);
+
+                        &.passed {
+                            border-left: 2px solid mat-color($accent, 500);
+                        }
+                    }
+        
+                    .marker-text {
+                        position: relative;
+                        left: -12px;
+                        padding: 2px 5px;
+                        border: 2px solid mat-color($foreground, divider);
+                        border-radius: 999px;
+                        color: mat-color($foreground, hint-text);
+        
+                        font-family: Montserrat, sans-serif;
+                        font-size: 8pt;
+                        font-weight: 600;
+
+                        &.passed {
+                            border: 2px solid mat-color($accent, 500);
+                            background-color: mat-color($accent, 500);
+                            color: mat-color($foreground, base);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+

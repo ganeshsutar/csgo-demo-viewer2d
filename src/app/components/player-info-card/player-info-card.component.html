@@ -1,10 +1,10 @@
-<div class="player-card-info">
+<div class="player-card-info mat-elevation-z5">
     <div class="row top-row">
         <div class="player-health" [class.reverse]="playerState.team == 3">
             <div class="health-bar" [class.t-health-bar]="playerState.team == 2" [style.width.%]="playerState.health">&nbsp;</div>
         </div>
         <div class="player-name" *ngIf="blockAlign == 'left'">
-            <div class="name-text">{{playerInfo.name}}</div>
+            <div class="name-text">{{playerInfo.no}} - {{playerInfo.name}}</div>
             <div class="spacer"></div>
             <div class="weapon-text" *ngIf="hasPrimary">
                 <img height="18px" [src]="getWeaponFileName(primary.itemName)">
@@ -15,7 +15,7 @@
                 <img height="18px"  [src]="getWeaponFileName(primary.itemName)">
             </div>
             <div class="spacer"></div>
-            <div class="name-text">{{playerInfo.name}}</div>
+            <div class="name-text">{{playerInfo.name}} - {{playerInfo.no}}</div>
         </div>
     </div>
     <div class="row mid-row" [class.mid-row-reverse]="playerState.team == 3">

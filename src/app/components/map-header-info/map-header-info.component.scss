@@ -13,9 +13,15 @@
         font-family: Montserrat, sans-serif;
         font-size: 18pt;
         align-items: stretch;
+        // background-color: #031d36;
 
         .spacer {
             flex: 1;
+        }
+
+        .info-card {
+            display: flex;
+            flex-direction: row;
         }
 
         .clan-image {

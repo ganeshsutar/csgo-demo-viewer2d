@@ -1,34 +1,33 @@
 <div class="map-header-info">
-    <div class="map-image">
-        <img src="assets/map-icons/map_icon_de_dust2.svg" height="72px">
-    </div>
     <div class="spacer"></div>
-    <div class="clan-image">
-        <img src="assets/hud-images/logo_T_default.png" width="40px" height="40px">
-    </div>
-    <div class="team-name">
-        <p>{{roundInfo.tClan.clanName || 'T'}}</p>
-    </div>
-    <div class="team-won-rounds t-color">
-        <p>{{scores.T}}</p>
-    </div>
-    <div class="timer-rounds">
-        <div class="rounds">Round {{round+1}} / {{matchInfo.roundInfo.length}}</div>
-        <div class="timer" [class.freeze-time]="currentState == 'freeze-time'">
-            <div class="state-image" *ngIf="currentState == 'bomb-planted'">
-                <img src="assets/hud-images/icon_c4_default.svg" height="30px">
-            </div>
-            <div class="time-text">{{currentTime}}</div>
+    <div class="info-card mat-elevation-z5">
+        <div class="clan-image">
+            <img src="assets/hud-images/logo_T_default.png" width="40px" height="40px">
         </div>
-    </div>
-    <div class="team-won-rounds ct-color">
-        <p>{{scores.CT}}</p>
-    </div>
-    <div class="team-name">
-        <p>{{roundInfo.ctClan.clanName || 'CT'}}</p>
-    </div>
-    <div class="clan-image">
-        <img src="assets/hud-images/logo_CT_default.png" width="40px" height="40px">
+        <div class="team-name">
+            <p>{{roundInfo.tClan.clanName || 'T'}}</p>
+        </div>
+        <div class="team-won-rounds t-color">
+            <p>{{scores.T}}</p>
+        </div>
+        <div class="timer-rounds">
+            <div class="rounds">Round {{round+1}} / {{matchInfo.roundInfo.length}}</div>
+            <div class="timer" [class.freeze-time]="currentState == 'freeze-time'">
+                <div class="state-image" *ngIf="currentState == 'bomb-planted'">
+                    <img src="assets/hud-images/icon_c4_default.svg" height="30px">
+                </div>
+                <div class="time-text">{{currentTime}}</div>
+            </div>
+        </div>
+        <div class="team-won-rounds ct-color">
+            <p>{{scores.CT}}</p>
+        </div>
+        <div class="team-name">
+            <p>{{roundInfo.ctClan.clanName || 'CT'}}</p>
+        </div>
+        <div class="clan-image">
+            <img src="assets/hud-images/logo_CT_default.png" width="40px" height="40px">
+        </div>
     </div>
     <div class="spacer"></div>
 </div>

@@ -31,6 +31,8 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
     infernos: []
   };
   @Input() public mapName: string = 'de_dust2';
+  @Input() public playerInfo: any = {};
+
   public width = 600;
   public height = 600;
 
@@ -84,6 +86,7 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       changes['mapName'].previousValue != changes['mapName'].currentValue)  {
       this.updateMap();
     }
+    this.updatePlayerNo();
     this.renderPlayers();
     this.renderDeaths();
     this.renderBomb();
@@ -130,6 +133,15 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       .call(this.zoom.translateTo, 50, 50);
   }
 
+  updatePlayerNo() {
+    this.gameState.players.filter((p) => p.team == 2).forEach((p, i) => {
+      p.no = i+1;
+    });
+    this.gameState.players.filter((p) => p.team == 3).forEach((p, i) => {
+      p.no = (i+6)%10;
+    });
+  }
+
   loadMap(): void {
     this.topContainer
       .append('svg:image')
@@ -172,6 +184,10 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       .append('path')
       .attr('class', 'playerNode-path');
     
+    nodes
+      .append('text')
+      .attr('class', 'player-name');
+    
     playerNodes.merge(nodes);
 
     const getColor = (d) => {
@@ -197,6 +213,26 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
       .attr('stroke-width', 0.3)
       .attr('fill', getColor)
       .attr('filter', 'url(#drop-shadow)');
+    
+    this.playerGroup.selectAll('g.playerNode')
+      .select('text.player-name')
+      .attr('fill', 'white')
+      .text((d) => {
+        let playerInfo = this.playerInfo[d.userId];
+        console.log(playerInfo);
+        if(playerInfo) {
+          return '' + playerInfo.no;
+        } else {
+          return '-';
+        }
+      })
+      .attr('transform', (d) => {
+        let x = this.transformX(d.x);
+        let y = this.transformY(d.y);
+        let scale = 1;
+        let dx = 2 * scale; 
+        return `translate(${x-0.6}, ${y+0.6}) scale(${scale})`;
+      });
   }
 
   

@@ -33,6 +33,7 @@ export class DemoViewerComponent implements OnInit {
     endTick: 0,
     freezeEndTick: 0,
     bombPlantTick: 0,
+    roundEndTick: 0,
     reason: '',
     winner: 2,
     gameStateFile: '',
@@ -68,6 +69,10 @@ export class DemoViewerComponent implements OnInit {
     this.loadGame();
   }
 
+  get rounds() {
+    return this.matchInfo.roundInfo.map((r, i) => i);
+  }
+
   loadMatchInfo(matchInfo): void {
     this.matchInfo = matchInfo;
     this.round = 0;
@@ -75,14 +80,31 @@ export class DemoViewerComponent implements OnInit {
     return this.loadRoundInfo();
   }
 
+  onRoundChanged() {
+    this.stopPlaying();
+    this.loadRoundInfo();
+  }
+
   onZoomReset() {
     this.viewer.onZoomReset();
+  }
+
+  updatePlayerInfo() {
+    this.roundInfo.tClan.players.map((item, index) => {
+      this.matchInfo.playerInfo[item].team = 2;
+      this.matchInfo.playerInfo[item].no = index;
+    });
+    this.roundInfo.ctClan.players.map((item, index) => {
+      this.matchInfo.playerInfo[item].team = 3;
+      this.matchInfo.playerInfo[item].no = index+5;
+    });
   }
 
   loadRoundInfo() {
     this.roundInfo = this.matchInfo.roundInfo[this.round];
     this.roundLoading = true;
     this.roundLoaded = false;
+    this.updatePlayerInfo();
 
     return this.demoPlayer.loadJson(this.baseDir + '/' + this.roundInfo.gameStateFile).then((states) => {
       this.roundLoading = false;
@@ -125,6 +147,8 @@ export class DemoViewerComponent implements OnInit {
     })
     let freezeAdded = false;
     let bombPlantAdded = false;
+    let winnerAdded = false;
+
     for(var i=0; i<this.gameStates.length; ++i) {
       let gameState = this.gameStates[i];
       if(!freezeAdded && gameState.tick > this.roundInfo.freezeEndTick) {
@@ -140,8 +164,14 @@ export class DemoViewerComponent implements OnInit {
         });
         bombPlantAdded = true;
       }
+      if(!winnerAdded && gameState.tick > this.roundInfo.roundEndTick) {
+        this.markers.push({
+          tick: i, text: (this.roundInfo.winner == 2 ? 'T Won': 'CT Won')
+        });
+        winnerAdded = true;
+      }
 
-      if(freezeAdded &&  bombPlantAdded) break;
+      if(freezeAdded &&  bombPlantAdded && winnerAdded) break;
     }
   }
 
@@ -181,22 +211,32 @@ export class DemoViewerComponent implements OnInit {
   }
 
   get TPlayers(): any[] {
+    const sorter = (a, b) => {
+      return this.matchInfo.playerInfo[a.userId].no - this.matchInfo.playerInfo[b.userId].no;
+    };
     let keys = this.roundInfo.tClan.players;
+    console.log(keys, this.matchInfo.playerInfo);
     let players = this.CurrentGameState.players.filter((player) => {
       return keys.includes(player.userId);
-    }).map((player) => {
+    }).map((player, index) => {
       return Object.assign({}, player, {team: 2});
     });
+    players.sort(sorter);
     return players;
   }
 
   get CTPlayers(): any[] {
+    const sorter = (a, b) => {
+      return this.matchInfo.playerInfo[a.userId].no - this.matchInfo.playerInfo[b.userId].no;
+    };
     let keys = this.roundInfo.ctClan.players;
+    console.log(keys, this.matchInfo.playerInfo);
     let players = this.CurrentGameState.players.filter((player) => {
       return keys.includes(player.userId);
-    }).map((player) => {
+    }).map((player, index) => {
       return Object.assign({}, player, {team: 3});
     });
+    players.sort(sorter)
     return players;
   }
 
@@ -213,6 +253,7 @@ export class DemoViewerComponent implements OnInit {
   }
 
   getPlayerInfo(userId): any {
+    console.log(userId, this.matchInfo.playerInfo[userId]);
     return this.matchInfo.playerInfo[userId];
   }
 

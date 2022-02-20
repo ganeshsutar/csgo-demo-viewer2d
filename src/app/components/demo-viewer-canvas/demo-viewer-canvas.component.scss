@@ -11,5 +11,10 @@
         padding: 10px;
         min-width: 600px;
         max-width: 600px;
+
+        .player-name {
+            font-family: Consolas, monospace;
+            font-size: 1.5pt;
+        }
     }
 }

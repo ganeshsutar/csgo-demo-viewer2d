@@ -359,15 +359,17 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
     let nodes = flashes.enter()
       .append('g')
       .attr('class', 'flashes')
-      .append('circle');
+      .append('svg:image')
+      .attr('xlink:href', 'assets/hud-icons/flashbang_exploded.png');
     
     flashes.merge(nodes);
     this.nadesGroup.selectAll('g.flashes')
-      .select('circle')
-      .attr('r', 3)
-      .attr('cx', (f) => this.transformX(f.x))
-      .attr('cy', (f) => this.transformY(f.y))
-      .attr('fill', 'white');
+      .select('image')
+      .attr('transform', (f) => {
+        let x = this.transformX(f.x) - 72 * 100 / 600 / 2;
+        let y = this.transformY(f.y) - 72 * 100 / 600 / 2;
+        return `translate(${x}, ${y}) scale(0.2)`;
+      });
   }
 
   renderSmokes(): void {
@@ -379,15 +381,16 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
     let nodes = smokes.enter()
       .append('g')
       .attr('class', 'smokes')
-      .append('circle');
+      .append('svg:image')
+      .attr('xlink:href', 'assets/hud-icons/smoke_start.png');
     smokes.merge(nodes);
 
     this.nadesGroup.selectAll('g.smokes')
-      .select('circle')
-      .attr('r', 3)
-      .attr('cx', (s) => this.transformX(s.x))
-      .attr('cy', (s) => this.transformY(s.y))
-      .attr('fill', 'gray');
+      .attr('transform', (f) => {
+        let x = this.transformX(f.x) - 48 * 100 / 600 / 2;
+        let y = this.transformY(f.y) - 48 * 100 / 600 / 2;
+        return `translate(${x}, ${y}) scale(0.1)`;
+      });
   }
 
   renderHeGrenades(): void {
@@ -399,15 +402,17 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
     let nodes = heGrenadesNodes.enter()
       .append('g')
       .attr('class', 'he-grenades')
-      .append('circle');
+      .append('svg:image')
+      .attr('xlink:href', 'assets/hud-icons/he_exploded.png');
     heGrenadesNodes.merge(nodes);
 
     this.nadesGroup.selectAll('g.he-grenades')
-      .select('circle')
-      .attr('r', 3)
-      .attr('cx', (s) => this.transformX(s.x))
-      .attr('cy', (s) => this.transformY(s.y))
-      .attr('fill', 'red');
+      .select('image')
+      .attr('transform', (f) => {
+        let x = this.transformX(f.x) - 48 * 100 / 600 / 2;
+        let y = this.transformY(f.y) - 48 * 100 / 600 / 2;
+        return `translate(${x}, ${y}) scale(0.1)`;
+      });
   }
 
   renderInfernos(): void {
@@ -419,14 +424,16 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
     let nodes = infernoNodes.enter()
       .append('g')
       .attr('class', 'inferno')
-      .append('circle');
+      .append('svg:image')
+      .attr('xlink:href', 'assets/hud-icons/molotov_burning.png');
       infernoNodes.merge(nodes);
 
     this.nadesGroup.selectAll('g.inferno')
-      .select('circle')
-      .attr('r', 3)
-      .attr('cx', (s) => this.transformX(s.x))
-      .attr('cy', (s) => this.transformY(s.y))
-      .attr('fill', 'yellow');
+      .select('image')
+      .attr('transform', (f) => {
+        let x = this.transformX(f.x) - 48 * 100 / 600 / 2;
+        let y = this.transformY(f.y) - 48 * 100 / 600 / 2;
+        return `translate(${x}, ${y}) scale(0.25)`;
+      });
   }
 }

@@ -174,7 +174,7 @@ export class DemoViewerCanvasComponent implements OnInit, OnChanges {
     let playerNodes = this.playerGroup.selectAll('g.playerNode')
       .data(alivePlayers);
     
-    playerNodes.exit().remove();
+    playerNodes.exit().transition(250).remove();
 
     var nodes = playerNodes.enter()
       .append('g')

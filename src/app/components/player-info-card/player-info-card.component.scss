@@ -90,6 +90,38 @@
                         transform: scale(1.5);
                     }
                 }
+
+                .name-no-left {
+                    position: absolute;
+                    padding: 5px;
+                    left: -10px;
+                    top: -3px;
+                    background-color: #e1b12c;
+                    border-radius: 100px;
+                    width: 10px;
+                    height: 10px;
+                    border: 2px solid white;
+                    line-height: 10px;
+                    text-align: center;
+                }
+                
+                .name-no-right {
+                    position: absolute;
+                    padding: 5px;
+                    left: 290px;
+                    top: -3px;
+                    background-color: #273c75;
+                    border-radius: 100px;
+                    width: 10px;
+                    height: 10px;
+                    border: 2px solid white;
+                    line-height: 10px;
+                    text-align: center;
+                }
+
+                .name-text {
+                    margin: 0px 10px;
+                }
             }
         }
 
@@ -174,8 +206,9 @@
                 flex: 1;
             }
 
-            // .player-kills, .player-deaths {
-            // }
+            .player-kills, .player-deaths, .player-assists {
+                margin: 0px 10px;
+            }
         }
     }
 }

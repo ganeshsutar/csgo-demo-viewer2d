@@ -23,7 +23,6 @@
     "@angular/platform-browser": "~11.2.4",
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
-    "d3": "^7.3.0",
     "demofile": "^2.5.0",
     "material-icons": "^1.10.6",
     "rxjs": "~6.6.0",

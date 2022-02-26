@@ -11,7 +11,7 @@
         <button mat-icon-button [disabled]="roundLoading" (click)="onPlayPause()"><mat-icon>{{intervalId != null ? 'pause' : 'play_arrow'}}</mat-icon></button>
         <!-- <mat-slider class="round-progress" [disabled]="roundLoading" [min]="slider.min" [max]="slider.max" [step]="slider.step" [(ngModel)]="currentIndex"></mat-slider> -->
         <app-timeline-slider class="round-progress" [markers]="markers" [min]="slider.min" [max]="slider.max" [(value)]="currentIndex"></app-timeline-slider>
-        <button mat-flat-button (click)="onZoomReset()">Zoom Reset</button>
+        <!-- <button mat-flat-button (click)="onZoomReset()">Zoom Reset</button> -->
     </div>
     <div class="map-details" *ngIf="demoLoaded">
         <div class="round-info-header">
@@ -29,10 +29,13 @@
                 </app-player-info-card>
             </div>
             <div class="spacer"></div>
-            <app-demo-viewer-canvas #demoViewer 
+            <!-- <app-demo-viewer-canvas #demoViewer 
                 [mapName]="matchInfo.mapName" 
                 [gameState]="CurrentGameState"
-                [playerInfo]="matchInfo.playerInfo"></app-demo-viewer-canvas>
+                [playerInfo]="matchInfo.playerInfo"></app-demo-viewer-canvas> -->
+            <app-map-viewer 
+                [gameState]="CurrentGameState"
+                [playerInfo]="matchInfo.playerInfo"></app-map-viewer>
             <div class="spacer"></div>
             <div class="team-card map-ct-info">
                 <app-player-info-card *ngFor="let player of CTPlayers" 

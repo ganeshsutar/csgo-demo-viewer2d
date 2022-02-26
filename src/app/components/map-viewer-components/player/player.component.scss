@@ -1,0 +1,42 @@
+@import '~@angular/material/theming';
+
+@mixin player-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .app-player-component {
+        .player-image {
+            fill: black;
+            stroke: white;
+            stroke-width: 0.1;
+        }
+
+        .tClan {
+            fill: #e1b12c;
+        }
+
+        .ctClan {
+            fill: #273c75;
+        }
+
+        .player-name {
+            fill: white;
+            font-family: Consolas;
+            font-size: 0.15em;
+        }
+
+        .player-image {
+            &.tClan.flashed {
+                fill: #e9dbb4;
+            }
+
+            &.ctClan.flashed {
+                fill: #617ecf;
+            }
+        }
+
+    }
+}

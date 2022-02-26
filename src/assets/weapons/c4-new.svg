@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="40"
+   height="40"
+   viewBox="0 0 10.583333 10.583334"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="c4-new.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="true"
+     units="px"
+     inkscape:zoom="12"
+     inkscape:cx="24.458333"
+     inkscape:cy="17.25"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid824" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ff0000;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round"
+       id="rect19837"
+       width="9.5250006"
+       height="5.5562501"
+       x="0.52916664"
+       y="2.4914932"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;fill:#ac0000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="0.8985033"
+       y="6.5055161"
+       id="text20518"><tspan
+         sodipodi:role="line"
+         id="tspan20516"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ac0000;fill-opacity:1;stroke-width:0.264583"
+         x="0.8985033"
+         y="6.5055161">c4</tspan></text>
+    <rect
+       style="fill:#ac0000;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round"
+       id="rect23568"
+       width="3.96875"
+       height="2.6458335"
+       x="5.4680552"
+       y="3.175"
+       ry="0" />
+    <rect
+       style="fill:#ac0000;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round"
+       id="rect23568-6"
+       width="0.52916664"
+       height="0.52916664"
+       x="5.4680552"
+       y="6.0854168" />
+    <rect
+       style="fill:#ac0000;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round"
+       id="rect23568-6-4"
+       width="0.52916664"
+       height="0.52916664"
+       x="6.6145835"
+       y="6.0854168" />
+    <rect
+       style="fill:#ac0000;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round"
+       id="rect23568-6-4-9"
+       width="0.52916664"
+       height="0.52916664"
+       x="7.7611113"
+       y="6.0854168" />
+    <rect
+       style="fill:#ac0000;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round"
+       id="rect23568-6-4-9-8"
+       width="0.52916664"
+       height="0.52916664"
+       x="8.9076395"
+       y="6.0854168" />
+  </g>
+</svg>

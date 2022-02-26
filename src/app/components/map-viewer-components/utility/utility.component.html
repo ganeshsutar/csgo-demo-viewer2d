@@ -1,0 +1,21 @@
+<svg:g *ngIf="utility == 'smoke'">
+    <svg:circle cx="0" cy="0" r="15" fill="gray" filter="url(#smoke)" 
+        [attr.transform]="smokeTransform"/>
+</svg:g>
+<svg:g *ngIf="utility == 'flash'">
+    <svg:circle [attr.cx]="x" [attr.cy]="y" r="3" fill="url(#flashGrenadeFill)">
+        <animate attributeName="r" values="0;15" repeatCount="indefinite" dur="1s" />
+    </svg:circle>
+</svg:g>
+<svg:g *ngIf="utility == 'heGrenade'">
+    <svg:circle [attr.cx]="x" [attr.cy]="y" r="0" fill="url(#heGrenadeFill)" stroke="#ec9b00" stroke-width="0.2">
+        <animate attributeName="r" values="0;7.5" repeatCount="indefinite" dur="1s" />
+    </svg:circle>
+</svg:g>
+<svg:g *ngIf="utility == 'inferno'">
+    <svg:circle cx="0" cy="0" r="15" fill="yellow" 
+    filter="url(#smoke)" [attr.transform]="smokeTransform"/>
+</svg:g>
+<svg:g *ngIf="utility == 'decoy'">
+    <svg:circle [attr.cx]="x" [attr.cy]="y" r="1" fill="gray" />
+</svg:g>

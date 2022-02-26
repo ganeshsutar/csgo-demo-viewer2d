@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DemoViewerCanvasComponent } from 'src/app/components/demo-viewer-canvas/demo-viewer-canvas.component';
 import { MarkerData } from 'src/app/components/timeline-slider/timeline-slider.component';
 import { DemoPlayerService } from 'src/app/services/demo-player.service';
 
@@ -13,9 +12,6 @@ import { DemoPlayerService } from 'src/app/services/demo-player.service';
   }
 })
 export class DemoViewerComponent implements OnInit {
-  @ViewChild(DemoViewerCanvasComponent)
-  private viewer: DemoViewerCanvasComponent;
-  
   public demoLoaded = false;
   public roundLoading = false;
   public roundLoaded = false;
@@ -86,7 +82,6 @@ export class DemoViewerComponent implements OnInit {
   }
 
   onZoomReset() {
-    this.viewer.onZoomReset();
   }
 
   updatePlayerInfo() {
@@ -215,7 +210,7 @@ export class DemoViewerComponent implements OnInit {
       return this.matchInfo.playerInfo[a.userId].no - this.matchInfo.playerInfo[b.userId].no;
     };
     let keys = this.roundInfo.tClan.players;
-    console.log(keys, this.matchInfo.playerInfo);
+    // console.log(keys, this.matchInfo.playerInfo);
     let players = this.CurrentGameState.players.filter((player) => {
       return keys.includes(player.userId);
     }).map((player, index) => {
@@ -230,7 +225,7 @@ export class DemoViewerComponent implements OnInit {
       return this.matchInfo.playerInfo[a.userId].no - this.matchInfo.playerInfo[b.userId].no;
     };
     let keys = this.roundInfo.ctClan.players;
-    console.log(keys, this.matchInfo.playerInfo);
+    // console.log(keys, this.matchInfo.playerInfo);
     let players = this.CurrentGameState.players.filter((player) => {
       return keys.includes(player.userId);
     }).map((player, index) => {
@@ -253,7 +248,6 @@ export class DemoViewerComponent implements OnInit {
   }
 
   getPlayerInfo(userId): any {
-    console.log(userId, this.matchInfo.playerInfo[userId]);
     return this.matchInfo.playerInfo[userId];
   }
 

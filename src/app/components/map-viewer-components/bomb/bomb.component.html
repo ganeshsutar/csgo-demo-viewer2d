@@ -1,0 +1,19 @@
+<svg:image [class.bomb-planted]="state == 'planted'"
+    [class.bomb-dropped]="state == 'dropped'"
+    [attr.x]="x-1.5"
+    [attr.y]="y-1.5"
+    [attr.width]="3"
+    [attr.height]="3"
+    filter="url(#shadow)"
+    href="assets/weapons/c4-new.svg"
+/>
+<svg:circle *ngIf="state == 'planted'"
+    [attr.cx]="x"
+    [attr.cy]="y"
+    r="0"
+    stroke="red"
+    fill="url(#bombInnerFill)"
+    stroke-width="0.4">
+    <animate attributeName="r" values="0;15" repeatCount="indefinite" dur="2s" />
+    <animate attributeName="opacity" values="1;0" repeatCount="indefinite" dur="2s" />
+</svg:circle>

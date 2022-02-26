@@ -1,20 +1,21 @@
 @import '~@angular/material/theming';
 
-@mixin demo-viewer-canvas-component-theme($theme) {
+@mixin player-death-mark-component-theme($theme) {
     $primary: map-get($theme, primary);
     $accent: map-get($theme, accent);
     $warn: map-get($theme, accent);
     $foreground: map-get($theme, foreground);
     $background: map-get($theme, background);
 
-    .demo-viewer-canvas {
-        padding: 10px;
-        min-width: 700px;
-        max-width: 700px;
+    .player-death-mark {
+        fill: #c0392b;
 
-        .player-name {
-            font-family: Consolas, monospace;
-            font-size: 1.5pt;
+        &.tClan {
+            fill: #e1b12c;
+        }
+
+        &.ctClan {
+            fill: #d63031;
         }
     }
 }

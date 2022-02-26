@@ -58,6 +58,7 @@
                 .health-bar {
                     background-color: #273c75; // #2980b9;
                     height: 30px;
+                    transition: width 1s ease;
                     // border-radius: 3px;
 
                     &.t-health-bar {

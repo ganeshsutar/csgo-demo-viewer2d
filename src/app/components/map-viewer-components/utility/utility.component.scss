@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+
+@mixin utility-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .projectile {
+        fill: #c0392b;
+
+        &.tClan {
+            fill: #e1b12c;
+        }
+
+        &.ctClan {
+            fill: #d63031;
+        }
+    }
+}

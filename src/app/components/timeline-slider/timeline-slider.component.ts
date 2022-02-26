@@ -106,7 +106,7 @@ export class TimelineSliderComponent implements OnInit, OnChanges {
 
     let containerWidth = this.container.nativeElement.offsetWidth;
     let tickPerPixel = Math.abs(max - min) / Math.max(1, containerWidth - 20);
-    console.log(tickPerPixel, pixel, min, pixel * tickPerPixel);
+    // console.log(tickPerPixel, pixel, min, pixel * tickPerPixel);
     return Math.floor(min + pixel * tickPerPixel);
   }
 

@@ -1,0 +1,6 @@
+<svg:g class="app-player-component">
+    <svg:path class="player-image" [class.tClan]="team == 2" [class.ctClan]="team == 3" [class.flashed]="flashduration > 0"
+    d="M 1 0 A 1 1 0 0 0 0 1 A 1 1 0 0 0 1 2 A 1 1 0 0 0 2 1 A 1 1 0 0 0 2 1 L 2 0 L 1 0 A 1 1 0 0 0 1 0 z" 
+    [attr.transform]="transform" filter="url(#shadow)"/>
+    <svg:text class="player-name" [attr.x]="x-0.70" [attr.y]="y+0.70">{{label}}</svg:text>
+</svg:g>

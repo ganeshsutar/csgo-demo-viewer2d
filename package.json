@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron": "electron . --url"
+    "electron": "electron . --url",
+    "electron-app": "electron .",
+    "prod-build": "ng build --prod --base-href=./"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +25,9 @@
     "@angular/platform-browser": "~11.2.4",
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
-    "demofile": "^2.5.0",
+    "@electron/remote": "^2.0.5",
+    "adm-zip": "^0.5.9",
+    "demofile": "^2.7.0",
     "material-icons": "^1.10.6",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -36,7 +40,7 @@
     "@angular/compiler-cli": "~11.2.4",
     "@types/d3": "^7.1.0",
     "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.20.46",
     "codelyzer": "^6.0.0",
     "electron": "^17.0.0",
     "jasmine-core": "~3.6.0",

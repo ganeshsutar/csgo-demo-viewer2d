@@ -12,6 +12,14 @@
         <!-- <mat-slider class="round-progress" [disabled]="roundLoading" [min]="slider.min" [max]="slider.max" [step]="slider.step" [(ngModel)]="currentIndex"></mat-slider> -->
         <app-timeline-slider class="round-progress" [markers]="markers" [min]="slider.min" [max]="slider.max" [(value)]="currentIndex"></app-timeline-slider>
         <!-- <button mat-flat-button (click)="onZoomReset()">Zoom Reset</button> -->
+        <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_verts</mat-icon></button>
+
+        <!-- <button mat-flat-button (click)="onSaveDemo()" aria-label="Save demo for fast retrival next time">Save Demo</button> -->
+        <!-- <button mat-flat-button routerLink="/">Load Another Demo</button> -->
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onSaveDemo()">Save Demo</button>
+            <button mat-menu-item routerLink="/">Load Another Demo</button>
+        </mat-menu>
     </div>
     <div class="map-details" *ngIf="demoLoaded">
         <div class="round-info-header">
@@ -34,6 +42,7 @@
                 [gameState]="CurrentGameState"
                 [playerInfo]="matchInfo.playerInfo"></app-demo-viewer-canvas> -->
             <app-map-viewer 
+                [mapName]="matchInfo.mapName"
                 [gameState]="CurrentGameState"
                 [playerInfo]="matchInfo.playerInfo"></app-map-viewer>
             <div class="spacer"></div>

@@ -1,4 +1,6 @@
 // main.js
+const remoteMain = require('@electron/remote/main');
+remoteMain.initialize()
 
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
@@ -18,7 +20,8 @@ const createWindow = () => {
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      enableRemoteModule: true
     }
   });
 
@@ -26,8 +29,11 @@ const createWindow = () => {
   if( argv.url ) {
     mainWindow.loadURL('http://localhost:4200/');
   } else {
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile('./dist/csgo-demo-viewer2d/index.html');
   }
+
+  remoteMain.enable(mainWindow.webContents);
+
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

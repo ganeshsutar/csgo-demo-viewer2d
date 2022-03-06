@@ -37,7 +37,7 @@
         </radialGradient>
     </defs>
     <g>
-        <image width="100" height="100" href="assets/maps/de_dust2/radar.png" />
+        <image width="100" height="100" [attr.xlink:href]="mapViewCfg.mapFile" />
     </g>
     <g>
         <ng-container *ngFor="let death of gameState.deaths">

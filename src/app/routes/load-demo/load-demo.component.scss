@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+
+@mixin load-demo-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .load-demo {
+        display: flex;
+        flex-direction: column;
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+
+            .mat-form-field {
+                flex: 1;
+            }
+
+            .mat-button-base {
+                margin-right: 20px;
+            }
+
+            .parsing-text {
+                font-family: Montserrat;
+            }
+        }
+    }
+}

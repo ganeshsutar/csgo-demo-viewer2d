@@ -7,8 +7,8 @@ import { mapCfg } from '../map-overview-cfg';
   styleUrls: ['./map-viewer.component.scss']
 })
 export class MapViewerComponent implements OnInit, OnChanges {
-  public width: number = 600;
-  public height: number = 600;
+  public width: number = 800;
+  public height: number = 800;
 
   @Input() public gameState: any = {
     players: [],
@@ -24,7 +24,7 @@ export class MapViewerComponent implements OnInit, OnChanges {
   @Input() public playerInfo: any = {};
   @Input() public mapName: string = 'de_dust2';
 
-  private mapViewCfg = {
+  public mapViewCfg = {
     mapFile: 'assets/maps/de_dust2.png',
     origin: {
         x: 563.1339320329055,

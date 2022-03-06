@@ -51,6 +51,8 @@ $dv-image-dark-theme: mat-dark-theme((
 @import './app/components/map-viewer-components/bomb/bomb.component.scss';
 @import './app/components/map-viewer-components/utility/utility.component.scss';
 
+@import './app/routes/load-demo/load-demo.component.scss';
+
 @mixin app-theme($theme) {
   // Include Application Component Mixins
   @include app-component-theme($theme);
@@ -66,6 +68,8 @@ $dv-image-dark-theme: mat-dark-theme((
   @include projectile-component-theme($theme);
   @include bomb-component-theme($theme);
   @include utility-component-theme($theme);
+
+  @include load-demo-component-theme($theme);
 }
 
 // Include theme styles for core and each component used in your app.

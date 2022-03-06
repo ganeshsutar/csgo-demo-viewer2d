@@ -18,6 +18,7 @@ import { PlayerDeathMarkComponent } from './components/map-viewer-components/pla
 import { ProjectileComponent } from './components/map-viewer-components/projectile/projectile.component';
 import { BombComponent } from './components/map-viewer-components/bomb/bomb.component';
 import { UtilityComponent } from './components/map-viewer-components/utility/utility.component';
+import { LoadDemoComponent } from './routes/load-demo/load-demo.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UtilityComponent } from './components/map-viewer-components/utility/uti
     PlayerDeathMarkComponent,
     ProjectileComponent,
     BombComponent,
-    UtilityComponent
+    UtilityComponent,
+    LoadDemoComponent
   ],
   imports: [
     BrowserModule,

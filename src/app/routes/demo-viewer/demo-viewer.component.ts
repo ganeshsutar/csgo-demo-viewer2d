@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { MarkerData } from 'src/app/components/timeline-slider/timeline-slider.component';
+import { CsgoDemoFile } from 'src/app/parser/demo-helper';
 import { DemoPlayerService } from 'src/app/services/demo-player.service';
 
 
@@ -16,9 +18,9 @@ export class DemoViewerComponent implements OnInit {
   public roundLoading = false;
   public roundLoaded = false;
 
-  private baseDir: string = '';
+  private demoFile: CsgoDemoFile = null;
   private matchInfo = {
-    mapName: '',
+    mapName: 'de_dust2',
     serverName: '',
     playerInfo: {},
     roundInfo: []
@@ -58,10 +60,10 @@ export class DemoViewerComponent implements OnInit {
     step: 1
   };
 
-  constructor(private demoPlayer: DemoPlayerService) { }
+  constructor(private demoPlayer: DemoPlayerService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    // this.loadGameState();
     this.loadGame();
   }
 
@@ -69,11 +71,12 @@ export class DemoViewerComponent implements OnInit {
     return this.matchInfo.roundInfo.map((r, i) => i);
   }
 
-  loadMatchInfo(matchInfo): void {
-    this.matchInfo = matchInfo;
+  loadMatchInfo(): void {
+    this.matchInfo = this.demoFile.getMatchInfo();
     this.round = 0;
     this.demoLoaded = true;
-    return this.loadRoundInfo();
+    console.log(this.matchInfo);
+    this.loadRoundInfo();
   }
 
   onRoundChanged() {
@@ -100,8 +103,11 @@ export class DemoViewerComponent implements OnInit {
     this.roundLoading = true;
     this.roundLoaded = false;
     this.updatePlayerInfo();
-
-    return this.demoPlayer.loadJson(this.baseDir + '/' + this.roundInfo.gameStateFile).then((states) => {
+    return new Promise((res, rej) => {
+      const filename = this.roundInfo.gameStateFile;
+      const states = this.demoFile.getRoundInfo(filename);
+      return res(states);
+    }).then((states: any) => {
       this.roundLoading = false;
       this.roundLoaded = true;
       this.gameStates = states;
@@ -111,10 +117,12 @@ export class DemoViewerComponent implements OnInit {
   }
 
   loadGame(): void {
-    this.baseDir = 'F:\\demo-maps\\generated\\demo-files';
-    this.demoPlayer.loadJson(this.baseDir + '\\match-info.json.gzip').then((matchInfo) => {
-      return this.loadMatchInfo(matchInfo);
-    });
+    this.demoFile = this.demoPlayer.getLoadedDemo();
+    if(!this.demoFile) {
+      this.router.navigateByUrl('/');
+      return;
+    }
+    this.loadMatchInfo();
   }
 
   onPlayPause() {
@@ -251,4 +259,7 @@ export class DemoViewerComponent implements OnInit {
     return this.matchInfo.playerInfo[userId];
   }
 
+  onSaveDemo() {
+    this.demoPlayer.saveCurrentLoadedDemo();
+  }
 }

@@ -17,8 +17,13 @@
   <app-root></app-root>
   <script type="text/javascript">
     var DemoFile = require('demofile');
+    var fs = require('fs');
     var fsPromises = require('fs/promises');
     var zlib = require('zlib');
+    var util = require('util');
+    var path = require('path');
+    var AdmZip = require('adm-zip');
+    var electronRemote = require('@electron/remote');
   </script>
 </body>
 </html>

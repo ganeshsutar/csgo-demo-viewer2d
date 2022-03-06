@@ -8,6 +8,21 @@ a in github.
 ## Screenshot
 ![astralis-vs-big-iem-2022](screenshot.png "Astralis vs BIG in IEM Katowice 2022")
 
+# Supported Maps
+Following maps are only supported
+- de_ancient
+- de_cache
+- de_dust2
+- de_inferno
+- de_mirage
+- de_overpass
+- de_train
+
+# In Progress Maps
+- de_nuke
+- de_vertigo
+
+
 ## Useful Links
 - [CS:GO Demo Parser: saul/demofile](https://github.com/saul/demofile)
 - [CS:GO lexogrine/hud-viewer](https://github.com/lexogrine/hud-viewer)

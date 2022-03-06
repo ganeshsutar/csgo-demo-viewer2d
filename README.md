@@ -1,27 +1,13 @@
 # CsgoDemoViewer2d
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+Electron Angular Application to view csgo demo file in 2D.
+This is my efforts to develop an application to view the pro demo files.
+The application is still in development, if you see and issue please raise
+a in github.
 
-## Development server
+## Screenshot
+![astralis-vs-big-iem-2022](screenshot.png "Astralis vs BIG in IEM Katowice 2022")
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Useful Links
+- [CS:GO Demo Parser: saul/demofile](https://github.com/saul/demofile)
+- [CS:GO lexogrine/hud-viewer](https://github.com/lexogrine/hud-viewer)
